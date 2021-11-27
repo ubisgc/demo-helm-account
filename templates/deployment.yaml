@@ -2,7 +2,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: acc-demo-app-account
-  namespace: ose-argocd-1-dev
+  namespace: acc
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/instance: acc-demo-app-account
