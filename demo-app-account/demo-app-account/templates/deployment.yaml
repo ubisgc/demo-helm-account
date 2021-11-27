@@ -1,0 +1,64 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ose-quarkus-demo-1
+  namespace: ose-argocd-1-dev
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: ose-quarkus-demo-1
+    app.kubernetes.io/managed-by: ArgoCD
+    app.kubernetes.io/name: ose-quarkus-demo-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: server
+      app.kubernetes.io/instance: ose-quarkus-demo-1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/component: server
+        app.kubernetes.io/instance: ose-quarkus-demo-1
+        app.kubernetes.io/managed-by: ArgoCD
+        app.kubernetes.io/name: ose-quarkus-demo-1
+        app.kubernetes.io/version: 1.0.0
+    spec:
+      containers:
+        - resources:
+            limits:
+              cpu: 250m
+              memory: 512Mi
+            requests:
+              cpu: 10m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - sleep
+                  - '5'
+          name: ose-quarkus-demo-1
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          terminationMessagePolicy: File
+          image: >-
+            artifactory.tools.bdpnet.dk/dtiupi-docker-release-local/ose-quarkus-demo-1:25b658c
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      serviceAccount: default
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 600

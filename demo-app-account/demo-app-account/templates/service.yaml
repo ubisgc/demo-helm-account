@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: acc-demo-app-account
+  namespace: acc
+  labels:
+    app.kubernetes.io/name: ose-quarkus-demo-1
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: acc-demo-app-account
+  type: ClusterIP
+  sessionAffinity: None

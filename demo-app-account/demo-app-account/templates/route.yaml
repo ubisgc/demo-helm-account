@@ -1,0 +1,21 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: acc-demo-app-account
+  namespace: acc
+  labels:
+    app.kubernetes.io/name: acc-demo-app-account
+spec:
+{{- if .Values.host }}
+  host: {{ .Values.host }}
+{{- end }}
+  to:
+    kind: Service
+    name: acc-demo-app-account
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  wildcardPolicy: None
