@@ -31,7 +31,7 @@ spec:
               memory: 512Mi
             requests:
               cpu: 10m
-              memory: 128Mi
+              memory: 10Mi
           terminationMessagePath: /dev/termination-log
           lifecycle:
             preStop:

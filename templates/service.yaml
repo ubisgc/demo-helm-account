@@ -4,7 +4,7 @@ metadata:
   name: acc-demo-app-account
   namespace: acc
   labels:
-    app.kubernetes.io/name: ose-quarkus-demo-1
+    app.kubernetes.io/name: acc-demo-app-account
 spec:
   ports:
     - name: http
