@@ -1,27 +1,27 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: ose-quarkus-demo-1
+  name: acc-demo-app-account
   namespace: ose-argocd-1-dev
   labels:
     app.kubernetes.io/component: server
-    app.kubernetes.io/instance: ose-quarkus-demo-1
+    app.kubernetes.io/instance: acc-demo-app-account
     app.kubernetes.io/managed-by: ArgoCD
-    app.kubernetes.io/name: ose-quarkus-demo-1
+    app.kubernetes.io/name: acc-demo-app-account
 spec:
   replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/component: server
-      app.kubernetes.io/instance: ose-quarkus-demo-1
+      app.kubernetes.io/instance: acc-demo-app-account
   template:
     metadata:
       creationTimestamp: null
       labels:
         app.kubernetes.io/component: server
-        app.kubernetes.io/instance: ose-quarkus-demo-1
+        app.kubernetes.io/instance: acc-demo-app-account
         app.kubernetes.io/managed-by: ArgoCD
-        app.kubernetes.io/name: ose-quarkus-demo-1
+        app.kubernetes.io/name: acc-demo-app-account
         app.kubernetes.io/version: 1.0.0
     spec:
       containers:
@@ -39,7 +39,7 @@ spec:
                 command:
                   - sleep
                   - '5'
-          name: ose-quarkus-demo-1
+          name: acc-demo-app-account
           ports:
             - name: http
               containerPort: 8080
@@ -47,7 +47,7 @@ spec:
           imagePullPolicy: IfNotPresent
           terminationMessagePolicy: File
           image: >-
-            artifactory.tools.bdpnet.dk/dtiupi-docker-release-local/ose-quarkus-demo-1:25b658c
+            registry.hub.docker.com/sgchub/demo-app-account
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
