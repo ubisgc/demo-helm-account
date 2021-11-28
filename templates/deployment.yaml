@@ -45,7 +45,7 @@ spec:
           imagePullPolicy: IfNotPresent
           terminationMessagePolicy: File
           image: >-
-            registry.hub.docker.com/sgchub/demo-app-account
+            registry.hub.docker.com/sgchub/demo-app-account:main-3cda026
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
