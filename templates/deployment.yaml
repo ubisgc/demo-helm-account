@@ -6,7 +6,6 @@ metadata:
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/instance: acc-demo-app-account
-    app.kubernetes.io/managed-by: ArgoCD
     app.kubernetes.io/name: acc-demo-app-account
 spec:
   replicas: 1
@@ -20,7 +19,6 @@ spec:
       labels:
         app.kubernetes.io/component: server
         app.kubernetes.io/instance: acc-demo-app-account
-        app.kubernetes.io/managed-by: ArgoCD
         app.kubernetes.io/name: acc-demo-app-account
         app.kubernetes.io/version: 1.0.0
     spec:
